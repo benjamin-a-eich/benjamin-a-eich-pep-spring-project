@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.exception.DuplicateUsernameException;
-import com.example.exception.InvalidLoginExpection;
-import com.example.exception.InvalidRegistrationExpection;
+import com.example.exception.InvalidLoginException;
+import com.example.exception.InvalidMessageException;
+import com.example.exception.InvalidRegistrationException;
 import com.example.exception.InvalidUserException;
+import com.example.exception.MessageUpdateException;
 
 @RestControllerAdvice
 public class ExceptionAndErrorController {
@@ -18,21 +20,33 @@ public class ExceptionAndErrorController {
         return ex.getMessage();
     }
 
-    @ExceptionHandler(InvalidLoginExpection.class)
+    @ExceptionHandler(InvalidLoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public String unauthorizedUser(InvalidLoginExpection ex) {
+    public String unauthorizedUser(InvalidLoginException ex) {
         return ex.getMessage();
     }
 
-    @ExceptionHandler(InvalidRegistrationExpection.class)
+    @ExceptionHandler(InvalidRegistrationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String invalidRegistration(InvalidRegistrationExpection ex) {
+    public String invalidRegistration(InvalidRegistrationException ex) {
         return ex.getMessage();
     }
 
     @ExceptionHandler(InvalidUserException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String invalidUser(InvalidLoginExpection ex) {
+    public String invalidUser(InvalidUserException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(InvalidMessageException.class) 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String invalidMessage(InvalidMessageException ex) {
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler(MessageUpdateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String invalidMessageUpdate(MessageUpdateException ex) {
         return ex.getMessage();
     }
 }

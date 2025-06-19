@@ -12,6 +12,13 @@ import com.example.exception.InvalidRegistrationException;
 import com.example.exception.InvalidUserException;
 import com.example.exception.MessageUpdateException;
 
+
+/**
+ * I created this class to keep all of the exception and error handling out of the main controller.
+ * As the service layer handles all of the business logic, I wanted to make sure that the main controller stayed as simple as possible.
+ * Likewise, this allows the service controller to handle the times where the data goes wrong, without having to keep passing the errors back and forth.
+ * This keeps the complexity of the code down a ton in my opinion.
+ */ 
 @RestControllerAdvice
 public class ExceptionAndErrorController {
     @ExceptionHandler(DuplicateUsernameException.class)
